@@ -7,6 +7,7 @@ import { MapComponent } from './map/map.component';
 import { HomeComponent } from './home/home.component';
 
 import { AgmCoreModule } from '@agm/core';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { AgmCoreModule } from '@agm/core';
     BrowserModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCEFmoLyP-lvCByvarw8Wka1R6mwavJwmc'
+      apiKey: environment.googleApiKey
     })
   ],
   providers: [],

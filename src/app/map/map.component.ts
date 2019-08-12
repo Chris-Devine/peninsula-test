@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MapService, IMapPointer } from './map.service';
 
 @Component({
   selector: 'app-map',
@@ -11,9 +12,34 @@ export class MapComponent implements OnInit {
   lat = -33.785809;
   lng = 151.121195;
 
-  constructor() { }
+  public mapPoints: Array<IMapPointer>;
+
+  constructor(private mapService: MapService) { }
 
   ngOnInit() {
+    this.initialiseProperties();
+  }
+
+  showInfo(p: IMapPointer) {
+    p.showInfo = true;
+
+  }
+
+  hideInfo(p: IMapPointer) {
+    p.showInfo = false;
+  }
+
+
+  private initialiseProperties(): void {
+    this.mapPoints = [];
+    this.getMapPoints();
+  }
+
+
+  private getMapPoints(): void {
+    this.mapService.getMapPoints().subscribe(
+      (mapPoints => this.mapPoints = mapPoints)
+    );
   }
 
 }

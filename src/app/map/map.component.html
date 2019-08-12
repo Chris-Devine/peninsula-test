@@ -1,6 +1,9 @@
-<h3>Angular Google API</h3>
-<!-- this creates a google map on the page with the given lat/lng from -->
-<!-- the component as the initial center of the map: -->
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+<h3>Map By Request With Markers</h3>
+<agm-map [latitude]="53.489656" [longitude]="-2.241142" [zoom]=12>
+  <agm-marker *ngFor="let marker of mapPoints; let i=index" [latitude]="marker.lat" [longitude]="marker.lng"
+     (mouseOver)="showInfo(marker)" (mouseOut)="hideInfo(marker)">
+    <agm-info-window [isOpen]="marker.showInfo">
+      <strong>Latitude : {{marker.lat}} Longitude : {{marker.lng}}</strong>
+    </agm-info-window>
+  </agm-marker>
 </agm-map>
